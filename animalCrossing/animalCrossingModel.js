@@ -8,16 +8,20 @@ module.exports = {
   findById,
 };
 
-async function insert(hobbit) {
-  return null;
+async function insert(villager) {
+  return db("villagers")
+    .insert(villager)
+    .then((ids) => {
+      return findById(ids[0]);
+    });
 }
 
 async function update(id, changes) {
-  return null;
+  return database("villagers").where({ id }).update(changes);
 }
 
 function remove(id) {
-  return null;
+  return database("villagers").where({ id }).del();
 }
 
 function getAll() {
@@ -25,5 +29,5 @@ function getAll() {
 }
 
 function findById(id) {
-  return null;
+  return db("villagers").where({ id }).first();
 }
